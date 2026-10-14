@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+
+# Generated Playwright output (regenerated on every run)
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Per-run artifacts: reports, repair queues, backups, reruns.
+# Retention: scripts keep the newest RUN_RETENTION runs (default 20) and prune older ones.
+artifacts/runs/*
+!artifacts/runs/.gitkeep
+
+# Healing log IS tracked: it is the audit trail of every source repair.
+# (artifacts/healing-log/*.json is intentionally not ignored.)
+
+# Playwright MCP browser-exploration scratch files
+.playwright-mcp/
+
+# Local scratch
+.capture/
+*.tmp
+.DS_Store
+Thumbs.db

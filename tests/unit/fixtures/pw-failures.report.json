@@ -1,0 +1,859 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "<ROOT>\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "-c",
+      ".capture/capture.config.js"
+    ],
+    "configFile": "<ROOT>\\.capture\\capture.config.js",
+    "rootDir": "<ROOT>/.capture",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "<ROOT>/.capture/out",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "<ROOT>/.capture",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "<ROOT>\\.capture\\out",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "<ROOT>\\.capture",
+        "snapshotDir": "<ROOT>\\.capture",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "screenshot": "only-on-failure",
+          "trace": "off"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "capture.spec.js",
+      "file": "capture.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "locator-not-found",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3121,
+                  "error": {
+                    "message": "TimeoutError: locator.click: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add to bag' })\u001b[22m\n",
+                    "stack": "TimeoutError: locator.click: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add to bag' })\u001b[22m\n\n    at <ROOT>\\.capture\\capture.spec.js:20:71",
+                    "location": {
+                      "file": "<ROOT>\\.capture\\capture.spec.js",
+                      "column": 71,
+                      "line": 20
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 18 |\u001b[39m\n \u001b[90m 19 |\u001b[39m test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39msetContent(html)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 |\u001b[39m test(\u001b[32m'locator-not-found'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39madd\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 21 |\u001b[39m test(\u001b[32m'strict-mode'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mbuy\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m test(\u001b[32m'assert-text'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(\u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mprice)\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'$149.98'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 23 |\u001b[39m test(\u001b[32m'assert-tobe'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m { expect(\u001b[35m2\u001b[39m \u001b[33m+\u001b[39m \u001b[35m2\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m5\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<ROOT>\\.capture\\capture.spec.js",
+                        "column": 71,
+                        "line": 20
+                      },
+                      "message": "TimeoutError: locator.click: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add to bag' })\u001b[22m\n\n\n  18 |\n  19 | test.beforeEach(async ({ page }) => { await page.setContent(html); });\n> 20 | test('locator-not-found', async ({ page }) => { await new P(page).add.click({ timeout: 1500 }); });\n     |                                                                       ^\n  21 | test('strict-mode', async ({ page }) => { await new P(page).buy.click({ timeout: 1500 }); });\n  22 | test('assert-text', async ({ page }) => { await expect(new P(page).price).toHaveText('$149.98', { timeout: 1000 }); });\n  23 | test('assert-tobe', async () => { expect(2 + 2).toBe(5); });\n    at <ROOT>\\.capture\\capture.spec.js:20:71"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:02:11.933Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<ROOT>\\.capture\\out\\capture-locator-not-found\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<ROOT>\\.capture\\out\\capture-locator-not-found\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<ROOT>\\.capture\\capture.spec.js",
+                    "column": 71,
+                    "line": 20
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d3fa05d28897c0d4cede-c92aeafbc0729a6f3228",
+          "file": "capture.spec.js",
+          "line": 20,
+          "column": 1
+        },
+        {
+          "title": "strict-mode",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 225,
+                  "error": {
+                    "message": "Error: locator.click: Error: strict mode violation: locator('button.b') resolved to 2 elements:\n    1) <button class=\"b\">Buy</button> aka getByRole('button', { name: 'Buy' }).first()\n    2) <button class=\"b\">Buy</button> aka getByRole('button', { name: 'Buy' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for locator('button.b')\u001b[22m\n",
+                    "stack": "Error: locator.click: Error: strict mode violation: locator('button.b') resolved to 2 elements:\n    1) <button class=\"b\">Buy</button> aka getByRole('button', { name: 'Buy' }).first()\n    2) <button class=\"b\">Buy</button> aka getByRole('button', { name: 'Buy' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for locator('button.b')\u001b[22m\n\n    at <ROOT>\\.capture\\capture.spec.js:21:65",
+                    "location": {
+                      "file": "<ROOT>\\.capture\\capture.spec.js",
+                      "column": 65,
+                      "line": 21
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 19 |\u001b[39m test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39msetContent(html)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 20 |\u001b[39m test(\u001b[32m'locator-not-found'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39madd\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 21 |\u001b[39m test(\u001b[32m'strict-mode'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mbuy\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 22 |\u001b[39m test(\u001b[32m'assert-text'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(\u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mprice)\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'$149.98'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 23 |\u001b[39m test(\u001b[32m'assert-tobe'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m { expect(\u001b[35m2\u001b[39m \u001b[33m+\u001b[39m \u001b[35m2\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m5\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 24 |\u001b[39m test(\u001b[32m'visible-missing'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(\u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mmissing)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<ROOT>\\.capture\\capture.spec.js",
+                        "column": 65,
+                        "line": 21
+                      },
+                      "message": "Error: locator.click: Error: strict mode violation: locator('button.b') resolved to 2 elements:\n    1) <button class=\"b\">Buy</button> aka getByRole('button', { name: 'Buy' }).first()\n    2) <button class=\"b\">Buy</button> aka getByRole('button', { name: 'Buy' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for locator('button.b')\u001b[22m\n\n\n  19 | test.beforeEach(async ({ page }) => { await page.setContent(html); });\n  20 | test('locator-not-found', async ({ page }) => { await new P(page).add.click({ timeout: 1500 }); });\n> 21 | test('strict-mode', async ({ page }) => { await new P(page).buy.click({ timeout: 1500 }); });\n     |                                                                 ^\n  22 | test('assert-text', async ({ page }) => { await expect(new P(page).price).toHaveText('$149.98', { timeout: 1000 }); });\n  23 | test('assert-tobe', async () => { expect(2 + 2).toBe(5); });\n  24 | test('visible-missing', async ({ page }) => { await expect(new P(page).missing).toBeVisible({ timeout: 1000 }); });\n    at <ROOT>\\.capture\\capture.spec.js:21:65"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:02:17.204Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<ROOT>\\.capture\\out\\capture-strict-mode\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<ROOT>\\.capture\\out\\capture-strict-mode\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<ROOT>\\.capture\\capture.spec.js",
+                    "column": 65,
+                    "line": 21
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d3fa05d28897c0d4cede-0a703eccb68dfde5a0a4",
+          "file": "capture.spec.js",
+          "line": 21,
+          "column": 1
+        },
+        {
+          "title": "assert-text",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1148,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.price')\nExpected: \u001b[32m\"$149.9\u001b[7m8\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"$149.9\u001b[7m9\u001b[27m\"\u001b[39m\nTimeout:  1000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.price') with timeout 1000ms\u001b[22m\n\u001b[2m  - waiting for locator('.price')\u001b[22m\n\u001b[2m    11 × locator resolved to <p class=\"price\">$149.99</p>\u001b[22m\n\u001b[2m       - unexpected value \"$149.99\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.price')\nExpected: \u001b[32m\"$149.9\u001b[7m8\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"$149.9\u001b[7m9\u001b[27m\"\u001b[39m\nTimeout:  1000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.price') with timeout 1000ms\u001b[22m\n\u001b[2m  - waiting for locator('.price')\u001b[22m\n\u001b[2m    11 × locator resolved to <p class=\"price\">$149.99</p>\u001b[22m\n\u001b[2m       - unexpected value \"$149.99\"\u001b[22m\n\n    at <ROOT>\\.capture\\capture.spec.js:22:75",
+                    "location": {
+                      "file": "<ROOT>\\.capture\\capture.spec.js",
+                      "column": 75,
+                      "line": 22
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 20 |\u001b[39m test(\u001b[32m'locator-not-found'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39madd\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 21 |\u001b[39m test(\u001b[32m'strict-mode'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mbuy\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 22 |\u001b[39m test(\u001b[32m'assert-text'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(\u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mprice)\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'$149.98'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 23 |\u001b[39m test(\u001b[32m'assert-tobe'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m { expect(\u001b[35m2\u001b[39m \u001b[33m+\u001b[39m \u001b[35m2\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m5\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 24 |\u001b[39m test(\u001b[32m'visible-missing'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(\u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mmissing)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m test(\u001b[32m'actionability'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mdisabled\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<ROOT>\\.capture\\capture.spec.js",
+                        "column": 75,
+                        "line": 22
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.price')\nExpected: \u001b[32m\"$149.9\u001b[7m8\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"$149.9\u001b[7m9\u001b[27m\"\u001b[39m\nTimeout:  1000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.price') with timeout 1000ms\u001b[22m\n\u001b[2m  - waiting for locator('.price')\u001b[22m\n\u001b[2m    11 × locator resolved to <p class=\"price\">$149.99</p>\u001b[22m\n\u001b[2m       - unexpected value \"$149.99\"\u001b[22m\n\n\n  20 | test('locator-not-found', async ({ page }) => { await new P(page).add.click({ timeout: 1500 }); });\n  21 | test('strict-mode', async ({ page }) => { await new P(page).buy.click({ timeout: 1500 }); });\n> 22 | test('assert-text', async ({ page }) => { await expect(new P(page).price).toHaveText('$149.98', { timeout: 1000 }); });\n     |                                                                           ^\n  23 | test('assert-tobe', async () => { expect(2 + 2).toBe(5); });\n  24 | test('visible-missing', async ({ page }) => { await expect(new P(page).missing).toBeVisible({ timeout: 1000 }); });\n  25 | test('actionability', async ({ page }) => { await new P(page).disabled.click({ timeout: 1500 }); });\n    at <ROOT>\\.capture\\capture.spec.js:22:75"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:02:17.984Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<ROOT>\\.capture\\out\\capture-assert-text\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<ROOT>\\.capture\\out\\capture-assert-text\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<ROOT>\\.capture\\capture.spec.js",
+                    "column": 75,
+                    "line": 22
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d3fa05d28897c0d4cede-1707b246e2bc17886986",
+          "file": "capture.spec.js",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "assert-tobe",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 263,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m5\u001b[39m\nReceived: \u001b[31m4\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m5\u001b[39m\nReceived: \u001b[31m4\u001b[39m\n    at <ROOT>\\.capture\\capture.spec.js:23:49",
+                    "location": {
+                      "file": "<ROOT>\\.capture\\capture.spec.js",
+                      "column": 49,
+                      "line": 23
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m test(\u001b[32m'strict-mode'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mbuy\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m test(\u001b[32m'assert-text'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(\u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mprice)\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'$149.98'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m test(\u001b[32m'assert-tobe'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m { expect(\u001b[35m2\u001b[39m \u001b[33m+\u001b[39m \u001b[35m2\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m5\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m test(\u001b[32m'visible-missing'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(\u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mmissing)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m test(\u001b[32m'actionability'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mdisabled\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m test(\u001b[32m'wrong-element'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mnameField\u001b[33m.\u001b[39mfill(\u001b[32m'x'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<ROOT>\\.capture\\capture.spec.js",
+                        "column": 49,
+                        "line": 23
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m5\u001b[39m\nReceived: \u001b[31m4\u001b[39m\n\n  21 | test('strict-mode', async ({ page }) => { await new P(page).buy.click({ timeout: 1500 }); });\n  22 | test('assert-text', async ({ page }) => { await expect(new P(page).price).toHaveText('$149.98', { timeout: 1000 }); });\n> 23 | test('assert-tobe', async () => { expect(2 + 2).toBe(5); });\n     |                                                 ^\n  24 | test('visible-missing', async ({ page }) => { await expect(new P(page).missing).toBeVisible({ timeout: 1000 }); });\n  25 | test('actionability', async ({ page }) => { await new P(page).disabled.click({ timeout: 1500 }); });\n  26 | test('wrong-element', async ({ page }) => { await new P(page).nameField.fill('x', { timeout: 1500 }); });\n    at <ROOT>\\.capture\\capture.spec.js:23:49"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:02:19.840Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<ROOT>\\.capture\\out\\capture-assert-tobe\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<ROOT>\\.capture\\out\\capture-assert-tobe\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<ROOT>\\.capture\\capture.spec.js",
+                    "column": 49,
+                    "line": 23
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d3fa05d28897c0d4cede-6ec39394bb13ce28e976",
+          "file": "capture.spec.js",
+          "line": 23,
+          "column": 1
+        },
+        {
+          "title": "visible-missing",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1132,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('banner')\nExpected: visible\nTimeout: 1000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByTestId('banner') with timeout 1000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('banner')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('banner')\nExpected: visible\nTimeout: 1000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByTestId('banner') with timeout 1000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('banner')\u001b[22m\n\n    at <ROOT>\\.capture\\capture.spec.js:24:81",
+                    "location": {
+                      "file": "<ROOT>\\.capture\\capture.spec.js",
+                      "column": 81,
+                      "line": 24
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 22 |\u001b[39m test(\u001b[32m'assert-text'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(\u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mprice)\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'$149.98'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 23 |\u001b[39m test(\u001b[32m'assert-tobe'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m { expect(\u001b[35m2\u001b[39m \u001b[33m+\u001b[39m \u001b[35m2\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m5\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m test(\u001b[32m'visible-missing'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(\u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mmissing)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 |\u001b[39m test(\u001b[32m'actionability'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mdisabled\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m test(\u001b[32m'wrong-element'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mnameField\u001b[33m.\u001b[39mfill(\u001b[32m'x'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 27 |\u001b[39m test(\u001b[32m'navigation'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://127.0.0.1:9/'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<ROOT>\\.capture\\capture.spec.js",
+                        "column": 81,
+                        "line": 24
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('banner')\nExpected: visible\nTimeout: 1000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByTestId('banner') with timeout 1000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('banner')\u001b[22m\n\n\n  22 | test('assert-text', async ({ page }) => { await expect(new P(page).price).toHaveText('$149.98', { timeout: 1000 }); });\n  23 | test('assert-tobe', async () => { expect(2 + 2).toBe(5); });\n> 24 | test('visible-missing', async ({ page }) => { await expect(new P(page).missing).toBeVisible({ timeout: 1000 }); });\n     |                                                                                 ^\n  25 | test('actionability', async ({ page }) => { await new P(page).disabled.click({ timeout: 1500 }); });\n  26 | test('wrong-element', async ({ page }) => { await new P(page).nameField.fill('x', { timeout: 1500 }); });\n  27 | test('navigation', async ({ page }) => { await page.goto('http://127.0.0.1:9/'); });\n    at <ROOT>\\.capture\\capture.spec.js:24:81"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:02:20.668Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<ROOT>\\.capture\\out\\capture-visible-missing\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<ROOT>\\.capture\\out\\capture-visible-missing\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<ROOT>\\.capture\\capture.spec.js",
+                    "column": 81,
+                    "line": 24
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d3fa05d28897c0d4cede-f84b750d6fca5c36cc9c",
+          "file": "capture.spec.js",
+          "line": 24,
+          "column": 1
+        },
+        {
+          "title": "actionability",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1659,
+                  "error": {
+                    "message": "TimeoutError: locator.click: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#dis')\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"dis\" disabled>Disabled</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    3 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+                    "stack": "TimeoutError: locator.click: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#dis')\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"dis\" disabled>Disabled</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    3 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\n    at <ROOT>\\.capture\\capture.spec.js:25:72",
+                    "location": {
+                      "file": "<ROOT>\\.capture\\capture.spec.js",
+                      "column": 72,
+                      "line": 25
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 23 |\u001b[39m test(\u001b[32m'assert-tobe'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m { expect(\u001b[35m2\u001b[39m \u001b[33m+\u001b[39m \u001b[35m2\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m5\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 24 |\u001b[39m test(\u001b[32m'visible-missing'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(\u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mmissing)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 25 |\u001b[39m test(\u001b[32m'actionability'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mdisabled\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 26 |\u001b[39m test(\u001b[32m'wrong-element'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mnameField\u001b[33m.\u001b[39mfill(\u001b[32m'x'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 27 |\u001b[39m test(\u001b[32m'navigation'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://127.0.0.1:9/'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 28 |\u001b[39m test(\u001b[32m'api'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ request }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(\u001b[32m'http://127.0.0.1:9/api'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<ROOT>\\.capture\\capture.spec.js",
+                        "column": 72,
+                        "line": 25
+                      },
+                      "message": "TimeoutError: locator.click: Timeout 1500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#dis')\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"dis\" disabled>Disabled</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    3 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\n\n  23 | test('assert-tobe', async () => { expect(2 + 2).toBe(5); });\n  24 | test('visible-missing', async ({ page }) => { await expect(new P(page).missing).toBeVisible({ timeout: 1000 }); });\n> 25 | test('actionability', async ({ page }) => { await new P(page).disabled.click({ timeout: 1500 }); });\n     |                                                                        ^\n  26 | test('wrong-element', async ({ page }) => { await new P(page).nameField.fill('x', { timeout: 1500 }); });\n  27 | test('navigation', async ({ page }) => { await page.goto('http://127.0.0.1:9/'); });\n  28 | test('api', async ({ request }) => { await request.get('http://127.0.0.1:9/api'); });\n    at <ROOT>\\.capture\\capture.spec.js:25:72"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:02:22.365Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<ROOT>\\.capture\\out\\capture-actionability\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<ROOT>\\.capture\\out\\capture-actionability\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<ROOT>\\.capture\\capture.spec.js",
+                    "column": 72,
+                    "line": 25
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d3fa05d28897c0d4cede-3391bf2f1a67fe29d659",
+          "file": "capture.spec.js",
+          "line": 25,
+          "column": 1
+        },
+        {
+          "title": "wrong-element",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 249,
+                  "error": {
+                    "message": "Error: locator.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n\u001b[2m  - waiting for locator('#txt')\u001b[22m\n\u001b[2m    - locator resolved to <div id=\"txt\">hello</div>\u001b[22m\n\u001b[2m    - fill(\"x\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n",
+                    "stack": "Error: locator.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n\u001b[2m  - waiting for locator('#txt')\u001b[22m\n\u001b[2m    - locator resolved to <div id=\"txt\">hello</div>\u001b[22m\n\u001b[2m    - fill(\"x\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n\n    at <ROOT>\\.capture\\capture.spec.js:26:73",
+                    "location": {
+                      "file": "<ROOT>\\.capture\\capture.spec.js",
+                      "column": 73,
+                      "line": 26
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 24 |\u001b[39m test(\u001b[32m'visible-missing'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(\u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mmissing)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m test(\u001b[32m'actionability'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mdisabled\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 26 |\u001b[39m test(\u001b[32m'wrong-element'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mnameField\u001b[33m.\u001b[39mfill(\u001b[32m'x'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 27 |\u001b[39m test(\u001b[32m'navigation'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://127.0.0.1:9/'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 28 |\u001b[39m test(\u001b[32m'api'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ request }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(\u001b[32m'http://127.0.0.1:9/api'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 29 |\u001b[39m test(\u001b[32m'test-timeout'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { test\u001b[33m.\u001b[39msetTimeout(\u001b[35m1500\u001b[39m)\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForEvent(\u001b[32m'popup'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<ROOT>\\.capture\\capture.spec.js",
+                        "column": 73,
+                        "line": 26
+                      },
+                      "message": "Error: locator.fill: Error: Element is not an <input>, <textarea>, <select> or [contenteditable] and does not have a role allowing [aria-readonly]\nCall log:\n\u001b[2m  - waiting for locator('#txt')\u001b[22m\n\u001b[2m    - locator resolved to <div id=\"txt\">hello</div>\u001b[22m\n\u001b[2m    - fill(\"x\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n\n\n  24 | test('visible-missing', async ({ page }) => { await expect(new P(page).missing).toBeVisible({ timeout: 1000 }); });\n  25 | test('actionability', async ({ page }) => { await new P(page).disabled.click({ timeout: 1500 }); });\n> 26 | test('wrong-element', async ({ page }) => { await new P(page).nameField.fill('x', { timeout: 1500 }); });\n     |                                                                         ^\n  27 | test('navigation', async ({ page }) => { await page.goto('http://127.0.0.1:9/'); });\n  28 | test('api', async ({ request }) => { await request.get('http://127.0.0.1:9/api'); });\n  29 | test('test-timeout', async ({ page }) => { test.setTimeout(1500); await page.waitForEvent('popup'); });\n    at <ROOT>\\.capture\\capture.spec.js:26:73"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:02:24.608Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<ROOT>\\.capture\\out\\capture-wrong-element\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<ROOT>\\.capture\\out\\capture-wrong-element\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<ROOT>\\.capture\\capture.spec.js",
+                    "column": 73,
+                    "line": 26
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d3fa05d28897c0d4cede-a839fd7e9d17655711fe",
+          "file": "capture.spec.js",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "navigation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 247,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_UNSAFE_PORT at http://127.0.0.1:9/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:9/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_UNSAFE_PORT at http://127.0.0.1:9/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:9/\", waiting until \"load\"\u001b[22m\n\n    at <ROOT>\\.capture\\capture.spec.js:27:53",
+                    "location": {
+                      "file": "<ROOT>\\.capture\\capture.spec.js",
+                      "column": 53,
+                      "line": 27
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 25 |\u001b[39m test(\u001b[32m'actionability'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mdisabled\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m test(\u001b[32m'wrong-element'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mnameField\u001b[33m.\u001b[39mfill(\u001b[32m'x'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 27 |\u001b[39m test(\u001b[32m'navigation'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://127.0.0.1:9/'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 28 |\u001b[39m test(\u001b[32m'api'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ request }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(\u001b[32m'http://127.0.0.1:9/api'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 29 |\u001b[39m test(\u001b[32m'test-timeout'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { test\u001b[33m.\u001b[39msetTimeout(\u001b[35m1500\u001b[39m)\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForEvent(\u001b[32m'popup'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m test(\u001b[32m'assert-url'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/checkout/\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<ROOT>\\.capture\\capture.spec.js",
+                        "column": 53,
+                        "line": 27
+                      },
+                      "message": "Error: page.goto: net::ERR_UNSAFE_PORT at http://127.0.0.1:9/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:9/\", waiting until \"load\"\u001b[22m\n\n\n  25 | test('actionability', async ({ page }) => { await new P(page).disabled.click({ timeout: 1500 }); });\n  26 | test('wrong-element', async ({ page }) => { await new P(page).nameField.fill('x', { timeout: 1500 }); });\n> 27 | test('navigation', async ({ page }) => { await page.goto('http://127.0.0.1:9/'); });\n     |                                                     ^\n  28 | test('api', async ({ request }) => { await request.get('http://127.0.0.1:9/api'); });\n  29 | test('test-timeout', async ({ page }) => { test.setTimeout(1500); await page.waitForEvent('popup'); });\n  30 | test('assert-url', async ({ page }) => { await expect(page).toHaveURL(/checkout/, { timeout: 1000 }); });\n    at <ROOT>\\.capture\\capture.spec.js:27:53"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:02:25.432Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<ROOT>\\.capture\\out\\capture-navigation\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<ROOT>\\.capture\\out\\capture-navigation\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<ROOT>\\.capture\\capture.spec.js",
+                    "column": 53,
+                    "line": 27
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d3fa05d28897c0d4cede-f7a051d074828887c675",
+          "file": "capture.spec.js",
+          "line": 27,
+          "column": 1
+        },
+        {
+          "title": "api",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 264,
+                  "error": {
+                    "message": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:9\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:9/api\u001b[22m\n\u001b[2m    - user-agent: Playwright/1.64.0 (x64; windows 10.0) node/24.18\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n",
+                    "stack": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:9\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:9/api\u001b[22m\n\u001b[2m    - user-agent: Playwright/1.64.0 (x64; windows 10.0) node/24.18\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n    at <ROOT>\\.capture\\capture.spec.js:28:52",
+                    "location": {
+                      "file": "<ROOT>\\.capture\\capture.spec.js",
+                      "column": 52,
+                      "line": 28
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 26 |\u001b[39m test(\u001b[32m'wrong-element'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mP\u001b[39m(page)\u001b[33m.\u001b[39mnameField\u001b[33m.\u001b[39mfill(\u001b[32m'x'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1500\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 27 |\u001b[39m test(\u001b[32m'navigation'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://127.0.0.1:9/'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 28 |\u001b[39m test(\u001b[32m'api'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ request }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(\u001b[32m'http://127.0.0.1:9/api'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 29 |\u001b[39m test(\u001b[32m'test-timeout'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { test\u001b[33m.\u001b[39msetTimeout(\u001b[35m1500\u001b[39m)\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForEvent(\u001b[32m'popup'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m test(\u001b[32m'assert-url'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/checkout/\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 31 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<ROOT>\\.capture\\capture.spec.js",
+                        "column": 52,
+                        "line": 28
+                      },
+                      "message": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:9\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:9/api\u001b[22m\n\u001b[2m    - user-agent: Playwright/1.64.0 (x64; windows 10.0) node/24.18\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n\n  26 | test('wrong-element', async ({ page }) => { await new P(page).nameField.fill('x', { timeout: 1500 }); });\n  27 | test('navigation', async ({ page }) => { await page.goto('http://127.0.0.1:9/'); });\n> 28 | test('api', async ({ request }) => { await request.get('http://127.0.0.1:9/api'); });\n     |                                                    ^\n  29 | test('test-timeout', async ({ page }) => { test.setTimeout(1500); await page.waitForEvent('popup'); });\n  30 | test('assert-url', async ({ page }) => { await expect(page).toHaveURL(/checkout/, { timeout: 1000 }); });\n  31 |\n    at <ROOT>\\.capture\\capture.spec.js:28:52"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:02:26.266Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<ROOT>\\.capture\\out\\capture-api\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<ROOT>\\.capture\\out\\capture-api\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<ROOT>\\.capture\\capture.spec.js",
+                    "column": 52,
+                    "line": 28
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d3fa05d28897c0d4cede-8a9db193d94274aae4ae",
+          "file": "capture.spec.js",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "test-timeout",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 1500,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 1558,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 1500ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 1500ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 1500ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "<ROOT>\\.capture\\capture.spec.js",
+                        "column": 78,
+                        "line": 29
+                      },
+                      "message": "Error: page.waitForEvent: Test timeout of 1500ms exceeded.\n=========================== logs ===========================\nwaiting for event \"popup\"\n============================================================\n\n  27 | test('navigation', async ({ page }) => { await page.goto('http://127.0.0.1:9/'); });\n  28 | test('api', async ({ request }) => { await request.get('http://127.0.0.1:9/api'); });\n> 29 | test('test-timeout', async ({ page }) => { test.setTimeout(1500); await page.waitForEvent('popup'); });\n     |                                                                              ^\n  30 | test('assert-url', async ({ page }) => { await expect(page).toHaveURL(/checkout/, { timeout: 1000 }); });\n  31 |\n    at <ROOT>\\.capture\\capture.spec.js:29:78"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:02:27.132Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<ROOT>\\.capture\\out\\capture-test-timeout\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<ROOT>\\.capture\\out\\capture-test-timeout\\error-context.md"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d3fa05d28897c0d4cede-1bf84cde2a5f1fb1734d",
+          "file": "capture.spec.js",
+          "line": 29,
+          "column": 1
+        },
+        {
+          "title": "assert-url",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1128,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/checkout/\u001b[39m\nReceived string:  \u001b[31m\"about:blank\"\u001b[39m\nTimeout: 1000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 1000ms\u001b[22m\n\u001b[2m    11 × locator resolved to <html>…</html>\u001b[22m\n\u001b[2m       - unexpected value \"about:blank\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/checkout/\u001b[39m\nReceived string:  \u001b[31m\"about:blank\"\u001b[39m\nTimeout: 1000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 1000ms\u001b[22m\n\u001b[2m    11 × locator resolved to <html>…</html>\u001b[22m\n\u001b[2m       - unexpected value \"about:blank\"\u001b[22m\n\n    at <ROOT>\\.capture\\capture.spec.js:30:61",
+                    "location": {
+                      "file": "<ROOT>\\.capture\\capture.spec.js",
+                      "column": 61,
+                      "line": 30
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m test(\u001b[32m'api'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ request }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(\u001b[32m'http://127.0.0.1:9/api'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 29 |\u001b[39m test(\u001b[32m'test-timeout'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { test\u001b[33m.\u001b[39msetTimeout(\u001b[35m1500\u001b[39m)\u001b[33m;\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForEvent(\u001b[32m'popup'\u001b[39m)\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m test(\u001b[32m'assert-url'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m { \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/checkout/\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m1000\u001b[39m })\u001b[33m;\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<ROOT>\\.capture\\capture.spec.js",
+                        "column": 61,
+                        "line": 30
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/checkout/\u001b[39m\nReceived string:  \u001b[31m\"about:blank\"\u001b[39m\nTimeout: 1000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 1000ms\u001b[22m\n\u001b[2m    11 × locator resolved to <html>…</html>\u001b[22m\n\u001b[2m       - unexpected value \"about:blank\"\u001b[22m\n\n\n  28 | test('api', async ({ request }) => { await request.get('http://127.0.0.1:9/api'); });\n  29 | test('test-timeout', async ({ page }) => { test.setTimeout(1500); await page.waitForEvent('popup'); });\n> 30 | test('assert-url', async ({ page }) => { await expect(page).toHaveURL(/checkout/, { timeout: 1000 }); });\n     |                                                             ^\n  31 |\n    at <ROOT>\\.capture\\capture.spec.js:30:61"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:02:29.283Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<ROOT>\\.capture\\out\\capture-assert-url\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<ROOT>\\.capture\\out\\capture-assert-url\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<ROOT>\\.capture\\capture.spec.js",
+                    "column": 61,
+                    "line": 30
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d3fa05d28897c0d4cede-5b95c8ee857aa8196c85",
+          "file": "capture.spec.js",
+          "line": 30,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-13T11:02:11.522Z",
+    "duration": 19123.422000000002,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 11,
+    "flaky": 0
+  }
+}

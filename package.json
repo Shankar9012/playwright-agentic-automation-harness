@@ -1,0 +1,30 @@
+{
+  "name": "playwright-qa-agent-harness",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-assisted Playwright E2E QA harness with Claude Code agents, guardrails and source-level locator self-healing.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node scripts/run-tests.mjs",
+    "test:smoke": "node scripts/run-tests.mjs --grep @smoke",
+    "test:headed": "playwright test --project=chromium --headed",
+    "test:ui": "playwright test --project=chromium --ui",
+    "test:heal": "node scripts/test-with-healing.mjs",
+    "test:faults": "node scripts/run-tests.mjs --project=faults",
+    "test:report": "node scripts/build-report.mjs",
+    "test:unit": "node --test \"tests/unit/**/*.test.mjs\"",
+    "lint": "eslint .",
+    "check:syntax": "node scripts/check-syntax.mjs",
+    "validate": "npm run lint && npm run check:syntax && npm run test:unit",
+    "report:open": "playwright show-report"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.64.0",
+    "eslint": "10.12.0",
+    "globals": "17.13.0"
+  }
+}
