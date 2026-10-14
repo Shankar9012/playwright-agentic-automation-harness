@@ -14,6 +14,7 @@ Stack: Node.js ≥ 20, JavaScript ES modules only, `@playwright/test` (pinned), 
 - Page Object Model: one class per page in `tests/pages/`, extending `BasePage`. Every locator is defined once in the constructor as `this.name = page.getBy...(...)` — this is the only shape the healer may edit.
 - Specs in `tests/specs/<feature>.spec.js` import `test`/`expect` from `tests/fixtures/test.js`, receive Page Objects as fixtures, follow Arrange–Act–Assert, and never put `page.locator/getBy*` inside `expect()`.
 - Tests are isolated (no ordering dependencies), tagged (`tests/support/tags.js`), and use web-first assertions. No `waitForTimeout`, no `test.only`.
+- Synchronization: open pages via Page Object `goto()`, which waits for load + hydration (`tests/support/app-ready.js`); call `waitForReady()` after reloads/hard navigations. Only explicit, condition-based waits. An intermittent failure whose `Received:` is the pre-action state is a **SYNC** test issue: fix the wait centrally and prove it with `--repeat-each=20`; never heal it or report it as a product defect.
 - Locator priority: `getByRole` (+ name) → `getByLabel` → `getByPlaceholder` → `getByText` → `getByTestId` → scoped CSS. Avoid XPath, positional `.nth()/.first()` and styling classes.
 - Test data in `tests/data/`; credentials only from env (`TEST_USER_EMAIL/PASSWORD`). Never invent credentials, requirements or expected values.
 
@@ -51,6 +52,7 @@ npm run test:heal                # initial run + classification + repair queue (
 node scripts/validate-healing.mjs --run <runId> --item <itemId> --diagnosis "..."
 node scripts/test-with-healing.mjs --finalize --run <runId>   # confirmation rerun + final report
 npm run test:report -- --run <runId|latest>
+npm run report:allure -- --run <runId|latest> [--open]   # Allure report → ./allure-report (one folder, latest build)
 npm run validate                 # eslint + syntax sweep + unit tests
 ```
 

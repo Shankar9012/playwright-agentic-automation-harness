@@ -9,7 +9,7 @@ import { join, relative } from 'node:path';
 import { PROJECT_ROOT } from '../utils/config/runtime-config.mjs';
 import { formatFindings, validateChangedFile } from '../utils/guardrails/validate-changed-files.mjs';
 
-const SKIP = new Set(['node_modules', 'playwright-report', 'test-results', 'artifacts', '.playwright-mcp', '.git', '.capture']);
+const SKIP = new Set(['node_modules', 'playwright-report', 'allure-report', 'allure-results', 'test-results', 'artifacts', '.playwright-mcp', '.git', '.capture']);
 
 async function* walk(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {

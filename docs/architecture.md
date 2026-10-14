@@ -12,7 +12,7 @@
 | Deterministic logic | `utils/` | Config, guardrails, classification, healing verification, reporting, IO |
 | CLI | `scripts/` | Runnable entry points that orchestrate `utils/` |
 | Tests | `tests/` | Page Objects, fixtures, data, specs, fault proofs, harness unit tests |
-| Evidence | `artifacts/runs/<runId>/`, `artifacts/healing-log/`, `test-results/`, `playwright-report/` | Machine-readable results and audit trail |
+| Evidence | `artifacts/runs/<runId>/`, `artifacts/healing-log/`, `test-results/`, `playwright-report/`, `allure-report/` | Machine-readable results and audit trail |
 
 Agents decide; code enforces. Any rule that must never be broken (scope of edits, locator-only patches, restore on failure, final status from a real rerun) lives in `utils/` and is unit-tested, so an agent cannot talk its way past it.
 
@@ -98,4 +98,4 @@ Both are covered by `tests/unit/guardrails.test.mjs`.
 
 - `artifacts/runs/` keeps the newest `RUN_RETENTION` runs (default 20); older run directories are pruned by `run-tests.mjs` / `test-with-healing.mjs`. Git-ignored.
 - `artifacts/healing-log/` is never pruned and is tracked in git: it is the audit trail of every source repair.
-- `test-results/` and `playwright-report/` are overwritten by each Playwright run.
+- `test-results/`, `playwright-report/` and `allure-report/` are overwritten by each Playwright run.

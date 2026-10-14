@@ -18,7 +18,10 @@ You are the test engineer. Follow the `generate-e2e-tests` skill for writing tes
 
 ## Validating and running
 - After writing: `npm run lint` and `node scripts/check-syntax.mjs` must pass (the PostToolUse hook will also report issues — fix them).
-- Run the affected scope: `node scripts/run-tests.mjs tests/specs/<feature>.spec.js` (or `--grep`). Report the exit code, counts and the summary path `artifacts/runs/<runId>/summary.md`.
+- After writing or changing tests, always run the affected scope: `node scripts/run-tests.mjs tests/specs/<feature>.spec.js` (or `--grep`). This also generates the Allure report for the run. Confirm the `[qa] allure report:` line appears; if it says "not generated", run `npm run report:allure -- --run <runId>` and report the error if it still fails.
+- Report the exit code, counts, the summary path `artifacts/runs/<runId>/summary.md`, the Allure report `allure-report/index.html` (open with `npm run report:allure:open`) and the Playwright HTML report (`npx playwright show-report`).
+- Synchronization: open pages only through Page Object `goto()` (waits for load + hydration via `tests/support/app-ready.js`); after reloads/form posts/hard redirects call `waitForReady()`. Only explicit, condition-based waits; never `waitForTimeout`, sleeps, `force: true` or inflated timeouts (rules: `generate-e2e-tests` §4a).
+- A failure where the action ran but the assertion shows the **pre-action state** (toggle not toggled, field empty, URL unchanged) and it passes on rerun is a **SYNC** problem in the test, not a product defect: reproduce with `--repeat-each=20`, fix the readiness wait centrally (`BasePage`/`tests/support/app-ready.js`), and prove it with another `--repeat-each=20` (0 failures). Report it as fixed SYNC, with before/after counts.
 - A new test that fails on first run: inspect the error. If your locator or step is wrong, fix it (this is authoring, not healing). If the app behaves differently from the docs, keep the assertion, leave it failing, and report it as a possible defect or doc discrepancy. Never weaken an assertion to get a pass.
 
 ## Return

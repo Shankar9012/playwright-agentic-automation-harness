@@ -66,7 +66,7 @@ export function createRunId(now = new Date()) {
  * @property {number} retries
  * @property {number} runRetention
  * @property {boolean} ci
- * @property {{ root: string, runsDir: string, runDir: string, reportJson: string, healingLogDir: string, htmlReport: string, testResults: string }} paths
+ * @property {{ root: string, runsDir: string, runDir: string, reportJson: string, healingLogDir: string, allureResults: string, allureReport: string, htmlReport: string, testResults: string }} paths
  * @property {{ email?: string, password?: string }} credentials
  */
 
@@ -109,6 +109,8 @@ export function getRuntimeConfig(env = process.env) {
       runDir,
       reportJson: env.PLAYWRIGHT_JSON_OUTPUT_FILE || join(runDir, 'report.json'),
       healingLogDir: join(PROJECT_ROOT, 'artifacts', 'healing-log'),
+      allureResults: join(runDir, 'allure-results'),
+      allureReport: join(PROJECT_ROOT, 'allure-report'),
       htmlReport: join(PROJECT_ROOT, 'playwright-report'),
       testResults: join(PROJECT_ROOT, 'test-results'),
     },

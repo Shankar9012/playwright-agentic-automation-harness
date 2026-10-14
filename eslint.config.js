@@ -3,7 +3,7 @@ import globals from 'globals';
 
 export default [
   {
-    ignores: ['node_modules/**', 'playwright-report/**', 'test-results/**', 'artifacts/**', '.playwright-mcp/**', '.capture/**'],
+    ignores: ['node_modules/**', 'playwright-report/**', 'allure-report/**', 'allure-results/**', 'test-results/**', 'artifacts/**', '.playwright-mcp/**', '.capture/**'],
   },
   js.configs.recommended,
   {

@@ -38,4 +38,4 @@ Never edit test files yourself during healing, never re-queue an item in the sam
 Give each agent: the target URL, the exact scope, the relevant docs/files, the run ID where applicable, and the expected output. Ask for evidence (files written, commands run with exit codes).
 
 ## 5. Final answer to the user
-Summarize: workflow chosen, agents used, files created/changed, commands with real exit codes, results (passed/failed/healed/unresolved), where the report and evidence live, and anything not verified. Do not round up results or hide failures.
+Summarize: workflow chosen, agents used, files created/changed, commands with real exit codes, results (passed/failed/healed/unresolved), where the report and evidence live (summary.md, Allure report `allure-report/`, Playwright HTML report `playwright-report/`), and anything not verified. Do not round up results or hide failures.

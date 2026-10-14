@@ -4,7 +4,7 @@ Everything Claude Code loads for this project: who does what (agents), how to do
 
 ```
 .claude/
-├── settings.json              hook registration + narrow permission denies
+├── settings.json              hook registration + narrow permission denies (e.g. reading `.env`)
 ├── agents/                    specialist subagents (Markdown + YAML frontmatter)
 │   ├── qaautomation.md        orchestrator — routes requests, delegates, runs scripts
 │   ├── planner.md             MCP exploration → docs/
@@ -30,7 +30,7 @@ Everything Claude Code loads for this project: who does what (agents), how to do
 4. **Hooks** run around every tool call:
    - Before a shell command, `guard-commands.mjs` evaluates it and may deny it.
    - After a file edit, `validate-after-edit.mjs` checks the file and sends any errors back to Claude to fix.
-5. The orchestrator collects real exit codes and report paths and answers you.
+5. The orchestrator collects real exit codes and report paths (`summary.md`, Allure report, Playwright HTML report) and answers you. Writing tests always ends with a test run and an Allure report, even when you did not ask for a run.
 
 Subagents cannot start other subagents. That is why the orchestration lives in the **skill**, which runs in the main thread. `qaautomation.md` provides the same behaviour when you start Claude with `claude --agent qaautomation`.
 
@@ -40,9 +40,9 @@ Subagents cannot start other subagents. That is why the orchestration lives in t
 |---|---|---|---|
 | qaautomation | Agent(planner, executer, self-healer, result-driven), Read, Glob, Grep, Bash | nothing directly | write tests or heal |
 | planner | Read/Write/Edit + Playwright MCP browser tools | `docs/*.md` | edit tests, pay, change data |
-| executer | Read/Write/Edit, Bash, MCP snapshot | `tests/pages`, `tests/specs`, `tests/fixtures`, `tests/data` | weaken assertions, invent values |
+| executer | Read/Write/Edit, Bash, MCP snapshot | `tests/pages`, `tests/specs`, `tests/fixtures`, `tests/data`; runs new specs + Allure report | weaken assertions, invent values |
 | self-healer | Read/Edit, Bash, MCP snapshot | one locator statement in an allowed file | touch `expect`, skips, app code |
-| result-driven | Read, Glob, Grep, Bash | report only | claim unverified results |
+| result-driven | Read, Glob, Grep, Bash | report only (rebuilds Allure report if missing) | claim unverified results |
 
 ## Hooks
 

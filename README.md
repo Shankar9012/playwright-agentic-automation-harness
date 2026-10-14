@@ -5,16 +5,23 @@ An AI-assisted, **application-agnostic** end-to-end testing harness. You describ
 1. explores the site with the Playwright MCP browser,
 2. documents what it actually observed,
 3. writes Page-Object-based Playwright tests,
-4. runs them,
+4. runs them and generates an Allure report,
 5. repairs broken locators in the source code, under hard guardrails,
 6. reports only what the test results prove.
 
 The harness is built so it never fakes a pass. Wrong prices, wrong messages and missing features stay failed and are reported. Only locator drift (the page still has the element, under a new name or markup) is repaired, and a repair is kept only after a real Playwright rerun passes with the original assertions unchanged.
 
 - **Default target:** `https://qa-demo-website.vercel.app`. To test any other site you are authorized to test, change `BASE_URL` and `ALLOWED_HOSTS` in `.env`; the code does not need to change.
-- **Stack:** Node.js ≥ 20, JavaScript ES modules, `@playwright/test` 1.64.0 (pinned), Playwright MCP, Claude Code agents, skills and hooks.
+- **Stack:** Node.js ≥ 20, JavaScript ES modules, `@playwright/test` 1.64.0 (pinned), `allure-playwright` 3.13.0 + `allure` 3.19.1 CLI (pinned, Node-based, no Java), Playwright MCP, Claude Code agents, skills and hooks.
 
-> **Current state:** the framework is built and verified, and nothing has been explored yet. The `docs/` files are placeholders marked `Status: NOT EXPLORED`, and `tests/specs/` is empty until you ask Claude to explore the site or write tests (see [Working with Claude Code](#working-with-claude-code)).
+> **Current state (2026-10-14):** the **Login** and **Signup** pages of the default target are explored, documented in `docs/` and automated:
+>
+> | Spec | Test cases | Page Objects |
+> |---|---|---|
+> | `tests/specs/login.spec.js` | TC-AUTH-LOGIN-001 … 011 | `login-page.js`, `header-component.js`, `products-page.js` |
+> | `tests/specs/signup.spec.js` | TC-AUTH-SIGNUP-001 … 011 | `signup-page.js`, `home-page.js`, `header-component.js` |
+>
+> Latest run: 21 passed · 0 failed · 1 skipped (headless and headed; the full suite was also stable over 5 repeats). The skip is TC-AUTH-SIGNUP-003, which needs `ALLOW_ACCOUNT_CREATION=true` (see [Environment variables](#environment-variables)). TC-AUTH-LOGIN-008 used to fail intermittently because it clicked before the app had hydrated; `BasePage.goto()` now waits for hydration (`tests/support/app-ready.js`). The rest of the site (catalog, cart, orders, profile, checkout) is **not explored** yet.
 
 ---
 
@@ -25,7 +32,27 @@ npm install
 npx playwright install chromium
 cp .env.example .env            # adjust BASE_URL / ALLOWED_HOSTS / optional TEST_USER_*
 npm run validate                # lint + syntax sweep + 45 harness unit tests
+npm test                        # run the suite → summary.md + Allure + Playwright HTML reports
 ```
+
+### Opening the reports
+
+To open it:
+
+- **Allure:** `npm run report:allure:open`
+- **Playwright HTML:** `npm run report:open`
+
+### Environment variables
+
+`.env` is git-ignored; never commit it. `.env.example` lists every setting.
+
+| Variable | Purpose |
+|---|---|
+| `BASE_URL`, `ALLOWED_HOSTS` | Target site and the hosts the harness may touch |
+| `TEST_USER_EMAIL`, `TEST_USER_PASSWORD` | Existing test account. Needed by TC-AUTH-LOGIN-002, 004, 011 and TC-AUTH-SIGNUP-004; those tests are skipped with a reason when empty |
+| `ALLOW_ACCOUNT_CREATION` | `true` lets TC-AUTH-SIGNUP-003 create a new account on every run (email `qa-harness+signup-<stamp>@example.invalid`). Default `false` |
+| `WORKERS`, `RETRIES`, `*_TIMEOUT_MS` | Execution policy |
+| `RUN_RETENTION` | How many `artifacts/runs/<runId>/` directories are kept |
 
 Open the folder in Claude Code. `CLAUDE.md`, the agents, the skills and the hooks are picked up from the project automatically. The Playwright MCP server must be available, either from your user settings or from a project `.mcp.json`.
 
@@ -53,7 +80,7 @@ Open the folder in Claude Code. `CLAUDE.md`, the agents, the skills and the hook
           utils/ (config · guardrails · healing · reporting · io)   scripts/ (CLI)
                                          │
                                          ▼
-          artifacts/runs/<runId>/  ·  artifacts/healing-log/  ·  playwright-report/
+          artifacts/runs/<runId>/  ·  artifacts/healing-log/  ·  allure-report/  ·  playwright-report/
 ```
 
 - **Agents decide; code enforces.** The rules that must never be broken are implemented in `utils/` and are unit-tested, not just written in prompts:
@@ -86,8 +113,8 @@ Type requests naturally. Prefixing them with `/qa-automation` makes the routing 
    - writes specs in `tests/specs/<feature>.spec.js` using Arrange–Act–Assert and the exact values observed during exploration,
    - tags them (`@smoke`, `@auth`, …).
 3. The `validate-after-edit` hook checks every file the executer writes. It fails the edit on syntax errors, CommonJS, a missing import extension or `test.only`, and warns about inline locators.
-4. The executer runs `npm run lint` and then `node scripts/run-tests.mjs tests/specs/...`.
-5. **You get:** the files created, real pass/fail counts, the run ID and the report path. If the site behaves differently from the docs, the test stays failing and is reported. The assertion is never weakened.
+4. The executer runs `npm run lint` and then always runs the new specs with `node scripts/run-tests.mjs tests/specs/...`, which also builds the Allure report.
+5. **You get:** the files created, real pass/fail counts, the run ID, `summary.md` and the Allure report path. If the site behaves differently from the docs, the test stays failing and is reported. The assertion is never weakened.
 
 ### 3. "Write automation code for the login page"
 **Route: Automate (feature-scoped).**
@@ -101,13 +128,13 @@ Type requests naturally. Prefixing them with `/qa-automation` makes the routing 
    - "Show password" toggles the field type,
    - the link to signup works.
 3. Tests that need a real account run only when `TEST_USER_EMAIL` and `TEST_USER_PASSWORD` are set in `.env`. Otherwise they are skipped with a stated reason. Credentials are never invented.
-4. The new spec is run and the results are reported.
+4. The new spec is run, the Allure report is generated and the results are reported.
 
 ### 4. "Add a test that signup rejects an invalid email"
 **Route: Automate, reusing the existing context.** No re-exploration happens if the signup page is already in `docs/`. If the exact validation message was never recorded, a short planner pass on `/signup` captures it first, so the expected text is observed rather than guessed.
 
 ### 5. "Run the smoke tests" / "Run the login tests"
-**Route: Run.** The executer runs `npm run test:smoke` or `node scripts/run-tests.mjs tests/specs/login.spec.js`. The result is the run ID, the real exit code, the counts, and the paths to `artifacts/runs/<runId>/summary.md` and the HTML report.
+**Route: Run.** The executer runs `npm run test:smoke` or `node scripts/run-tests.mjs tests/specs/login.spec.js`. The result is the run ID, the real exit code, the counts, and the paths to `artifacts/runs/<runId>/summary.md`, the Allure report and the HTML report.
 
 ### 6. "Run the tests and heal broken locators"
 **Route: Heal.** This is a fixed sequence:
@@ -151,7 +178,7 @@ Type requests naturally. Prefixing them with `/qa-automation` makes the routing 
 
 | Command | Purpose |
 |---|---|
-| `npm test` | Chromium suite; writes `artifacts/runs/<runId>/summary.md` and the HTML report |
+| `npm test` | Chromium suite; writes `artifacts/runs/<runId>/summary.md`, the Allure report (`allure-report/`) and the HTML report (`playwright-report/`) |
 | `npm run test:smoke` | `@smoke` tests only |
 | `npm run test:headed` / `npm run test:ui` | Debugging |
 | `npm run test:heal` | Initial run, classification and repair queue (exit 42 means items are waiting for Claude) |
@@ -160,8 +187,23 @@ Type requests naturally. Prefixing them with `/qa-automation` makes the routing 
 | `npm run test:report -- --run latest` | Rebuild the report from artifacts |
 | `npm run validate` | ESLint, syntax sweep and harness unit tests |
 | `npm run report:open` | Open the Playwright HTML report |
+| `npm run report:allure -- --run <id\|latest>` | Rebuild `allure-report/` for a run (Allure 3 CLI, no Java needed) |
+| `npm run report:allure:open -- --run <id\|latest>` | Rebuild `allure-report/` and serve it in the browser |
+
+Allure results are written by the `allure-playwright` reporter for every run that uses the config reporters (`npm test`, `npm run test:smoke`, the initial `test:heal` run). Healing reruns use only the JSON reporter, so the Allure report for a heal run shows the initial run; the final result is in `summary.md`.
 
 Exit codes: `0` passed · `1` test failures · `2` infrastructure error · `3` healing patch rejected · `42` repair queue waiting for the orchestrator.
+
+### Where the reports are
+
+| Report | Location | Open with |
+|---|---|---|
+| Allure | `allure-report/index.html` (one folder; always the latest run) | `npm run report:allure:open` |
+| Summary | `artifacts/runs/<runId>/summary.md` (+ `summary.json`) | any editor |
+| Playwright HTML | `playwright-report/index.html` (last run only) | `npm run report:open` |
+| Failure evidence | `test-results/<test>/` (screenshot, trace, video, `error-context.md`) | `npx playwright show-trace <trace.zip>` |
+
+Open the HTML reports with the commands, not by double-clicking: both need a local server. To view an older run in Allure, rebuild it with `npm run report:allure:open -- --run <runId>`; raw Allure results are kept per run in `artifacts/runs/<runId>/allure-results/`.
 
 ---
 
@@ -176,6 +218,6 @@ Exit codes: `0` passed · `1` test failures · `2` infrastructure error · `3` h
 | `utils/` | Deterministic logic: config, guardrails, healing, reporting, IO | [utils/README.md](utils/README.md) |
 | `scripts/` | Command-line entry points | [scripts/README.md](scripts/README.md) |
 | `artifacts/` | Per-run results and the healing audit log | [artifacts/README.md](artifacts/README.md) |
-| `playwright.config.js` | ESM config: base URL, projects, timeouts, HTML + JSON reporters | — |
+| `playwright.config.js` | ESM config: base URL, projects, timeouts, list + HTML + JSON + Allure reporters | — |
 
 For the deep dive (classification table, patch-validation design, hook schema), see [docs/architecture.md](docs/architecture.md).

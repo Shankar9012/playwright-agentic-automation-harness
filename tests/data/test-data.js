@@ -25,3 +25,28 @@ export function syntheticEmail(label = 'user') {
   const stamp = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
   return `qa-harness+${label}-${stamp}@example.invalid`;
 }
+
+/**
+ * Email of the configured test account only (for cases that need an existing email but not its
+ * password, e.g. wrong-password and duplicate-signup checks).
+ * @returns {string | null}
+ */
+export function getTestUserEmail() {
+  return process.env.TEST_USER_EMAIL || null;
+}
+
+/**
+ * Opt-in for tests that create persistent accounts on the target (successful signup).
+ * Off unless ALLOW_ACCOUNT_CREATION=true.
+ */
+export function isAccountCreationAllowed() {
+  return process.env.ALLOW_ACCOUNT_CREATION === 'true';
+}
+
+/**
+ * Synthetic, clearly fake password that satisfies the observed 8-character minimum.
+ * Not a credential for any real account.
+ */
+export function syntheticPassword() {
+  return `QaHarness-${Date.now().toString(36)}!`;
+}

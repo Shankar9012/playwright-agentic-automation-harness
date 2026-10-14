@@ -1,4 +1,9 @@
 import { test as base, expect } from '@playwright/test';
+import { HeaderComponent } from '../pages/header-component.js';
+import { HomePage } from '../pages/home-page.js';
+import { LoginPage } from '../pages/login-page.js';
+import { ProductsPage } from '../pages/products-page.js';
+import { SignupPage } from '../pages/signup-page.js';
 
 /**
  * Project-wide test fixture. Every spec imports `test` and `expect` from here, never directly
@@ -26,8 +31,21 @@ export const test = base.extend({
     { auto: true },
   ],
 
-  // Page Object fixtures are registered here by the executer agent, e.g.:
-  // loginPage: async ({ page }, use) => { await use(new LoginPage(page)); },
+  header: async ({ page }, use) => {
+    await use(new HeaderComponent(page));
+  },
+  homePage: async ({ page }, use) => {
+    await use(new HomePage(page));
+  },
+  productsPage: async ({ page }, use) => {
+    await use(new ProductsPage(page));
+  },
+  loginPage: async ({ page }, use) => {
+    await use(new LoginPage(page));
+  },
+  signupPage: async ({ page }, use) => {
+    await use(new SignupPage(page));
+  },
 });
 
 export { expect };

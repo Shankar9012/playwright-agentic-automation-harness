@@ -30,9 +30,10 @@ Combine stages when asked ("write login tests and run them" → B then C). State
 Brief: target URL, scope (whole site or the named feature), existing docs to update, safety limits (no payments/orders/account changes, no invented credentials). Expect: docs updated, test-case IDs, unavailable features, assumptions. Skill used by the agent: `explore-site`.
 
 ## B. Automate → `executer` agent
-Brief: feature, the test-case IDs from `docs/test-cases.md`, existing Page Objects/fixtures to reuse, and "run the new spec and report results". Expect: files changed, lint/syntax status, run ID, pass/fail per test. Skill used: `generate-e2e-tests`.
+Brief: feature, the test-case IDs from `docs/test-cases.md`, existing Page Objects/fixtures to reuse, and "run the new spec, generate the Allure report and report results". Expect: files changed, lint/syntax status, run ID, pass/fail per test, Allure report path. Writing tests always ends with a run + Allure report, even if the user didn't ask to run them. Skill used: `generate-e2e-tests`.
 - If the executer reports a missing fact, run a scoped A, then resume B.
 - If new tests fail because the app differs from the docs, do **not** heal; report it (route E).
+- If a test fails intermittently with the **pre-action state** in `Received:` (SYNC — app not interactive yet), do **not** heal and do not report a product defect: send it back to the executer to fix the readiness wait (`generate-e2e-tests` §4a) and prove it with `--repeat-each=20`.
 
 ## C. Run → `executer` agent (or directly)
 `node scripts/run-tests.mjs [spec files | --grep @tag]`. Then route E with the run ID.
@@ -42,10 +43,10 @@ Brief: feature, the test-case IDs from `docs/test-cases.md`, existing Page Objec
 2. Exit 42: read `artifacts/runs/<runId>/repair-queue.json`; for each `QUEUED` item, **one at a time**, delegate to `self-healer` with `runId` + `itemId`. Wait for its outcome before the next item.
 3. `node scripts/test-with-healing.mjs --finalize --run <runId>` (confirmation rerun; this decides final pass/fail).
 4. Route E.
-Never edit tests yourself during D, never retry an item in the same run, never treat ASSERTION_MISMATCH / ELEMENT_ABSENT / API / NAVIGATION / TIMEOUT_INSUFFICIENT_EVIDENCE failures as healable.
+Never edit tests yourself during D, never retry an item in the same run, never treat ASSERTION_MISMATCH / ELEMENT_ABSENT / API / NAVIGATION / TIMEOUT_INSUFFICIENT_EVIDENCE / SYNC failures as healable (SYNC goes to the executer after D).
 
 ## E. Report → `result-driven` agent
 Brief: run ID. Expect the report structure from `run-and-report`. Relay it to the user without upgrading any result.
 
 ## Final message to the user
-Route taken, agents used, files changed, commands + real exit codes, results (initial/final/healed/unresolved), report path (`artifacts/runs/<runId>/summary.md`, HTML via `npx playwright show-report`), open assumptions and anything not verified.
+Route taken, agents used, files changed, commands + real exit codes, results (initial/final/healed/unresolved), report paths (`artifacts/runs/<runId>/summary.md`, Allure at `allure-report/` via `npm run report:allure:open -- --run <runId>`, HTML via `npx playwright show-report`), open assumptions and anything not verified.

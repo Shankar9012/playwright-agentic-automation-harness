@@ -4,7 +4,8 @@ Thin ESM scripts that call `utils/`. They work the same in Claude Code, in a ter
 
 | Script | npm alias | What it does | Exit codes |
 |---|---|---|---|
-| `run-tests.mjs [pw args]` | `npm test`, `test:smoke`, `test:faults` | Runs Playwright (default project `chromium`) and writes `artifacts/runs/<runId>/` (report.json, run.json, summary.*). Prunes old runs. | 0 pass · 1 failures · 2 no usable report |
+| `run-tests.mjs [pw args]` | `npm test`, `test:smoke`, `test:faults` | Runs Playwright (default project `chromium`) and writes `artifacts/runs/<runId>/` (report.json, run.json, summary.*, allure-results/), builds the Allure report into `allure-report/` and the HTML report into `playwright-report/`. Prunes old runs. A failed Allure build is logged but never changes the exit code. | 0 pass · 1 failures · 2 no usable report |
+| `allure-report.mjs [--run <id>] [--open]` | `npm run report:allure`, `report:allure:open` | Rebuilds `allure-report/` from a run's `allure-results/` (default: latest run) and serves it with `--open`. | 0 written · 2 no results / Allure error |
 | `test-with-healing.mjs [pw args]` | `npm run test:heal` | **Phase 1** of healing: initial run with retries=0, classification, backups, `repair-queue.json`. | 0 pass · 1 failures, none eligible · 2 infra · **42 queue ready** |
 | `test-with-healing.mjs --status --run <id>` | — | Prints the status of each queue item. | 42 items still queued · 0 none queued |
 | `validate-healing.mjs --run <id> --item <id> [--diagnosis "…"]` | — | **Phase 2:** verifies one applied repair (scope, locator-only patch, rerun, dependents) and keeps or restores it. | 0 HEALED · 1 FAILED_RERUN · 3 REJECTED · 2 error |

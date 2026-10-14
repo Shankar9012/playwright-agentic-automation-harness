@@ -12,7 +12,8 @@ artifacts/
 │   ├── reruns/<itemId>/*.json      targeted and dependent-spec rerun reports
 │   ├── final.json                  confirmation rerun of initially failing tests (after --finalize)
 │   ├── summary.json                machine-readable summary
-│   └── summary.md                  human-readable report
+│   ├── summary.md                  human-readable report
+│   └── allure-results/             raw results from the allure-playwright reporter (rebuild: npm run report:allure -- --run <runId>)
 └── healing-log/<runId>.json        every healing attempt and its outcome (tracked in git, never pruned)
 ```
 
@@ -22,5 +23,6 @@ Run ID format: `YYYYMMDD-HHMMSS-<8 hex>`. Use `latest` wherever a script accepts
 `runId`, `itemId`, `testIds`, `originalStatus`, `category`, `subtype`, `originalLocator`, `replacementLocator`, `filesChanged`, `diagnosis`, `outcome` (`HEALED` | `FAILED_RERUN` | `REJECTED` | `ABANDONED`), `verification` (stage, rerun commands and exit codes, stats, violations, restored files), `evidence` (snapshot, screenshot, trace, rerun reports), `recordedAt`.
 
 ## Related outputs outside this folder
+- `allure-report/`: the Allure report, one folder at the project root, rebuilt by every run (latest run only). Open it with `npm run report:allure:open`.
+- `playwright-report/`: the Playwright HTML report. Open it with `npm run report:open`.
 - `test-results/`: screenshots, traces, videos and error-context for failed tests. Overwritten on each run.
-- `playwright-report/`: the HTML report. Open it with `npm run report:open`.

@@ -27,6 +27,7 @@ import { runPlaywright } from '../utils/execution/run-playwright.mjs';
 import { readReport } from '../utils/reporting/parse-playwright-json.mjs';
 import { buildSummary } from '../utils/reporting/build-summary.mjs';
 import { writeReport } from '../utils/reporting/write-report.mjs';
+import { generateAllureReport } from '../utils/reporting/generate-allure.mjs';
 import { buildRepairQueue, readQueue } from '../utils/healing/repair-queue.mjs';
 import { readHealingLog } from '../utils/healing/record-healing.mjs';
 import { restorePending } from '../utils/guardrails/safe-restore.mjs';
@@ -76,6 +77,11 @@ async function phaseInitial() {
   const summary = buildSummary({ runId: config.runId, baseURL: config.baseURL, initial, triage, queue, commands });
   await writeReport(runDir, summary);
   await pruneRuns(config.paths.runsDir, config.runRetention);
+  // Allure shows the initial run only; the confirmation rerun result lives in summary.md.
+  await generateAllureReport({
+    root, resultsDir: config.paths.allureResults, reportDir: config.paths.allureReport, name: `QA run ${config.runId} (initial)`,
+  }).then(({ reportDir }) => log(`allure report (initial run): ${relative(root, reportDir)}`))
+    .catch((error) => log(`allure report not generated: ${error.message.split('\n')[0]}`));
 
   log(`initial: passed ${initial.stats.expected} · failed ${initial.stats.unexpected} · flaky ${initial.stats.flaky} · skipped ${initial.stats.skipped}`);
   for (const entry of triage) {

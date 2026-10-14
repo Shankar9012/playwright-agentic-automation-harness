@@ -23,7 +23,8 @@ utils/
 ├── reporting/
 │   ├── parse-playwright-json.mjs  JSON reporter → normalized test records (missing report = error)
 │   ├── build-summary.mjs     initial vs final, repairs, flaky, unresolved, suspected defects
-│   └── write-report.mjs      summary.json + summary.md
+│   ├── write-report.mjs      summary.json + summary.md
+│   └── generate-allure.mjs   build/serve the Allure report from a run's allure-results (pinned Allure 3 CLI)
 ├── execution/
 │   └── run-playwright.mjs    spawn Playwright Test with a JSON report destination
 └── io/

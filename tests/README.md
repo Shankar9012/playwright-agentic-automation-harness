@@ -4,8 +4,8 @@
 tests/
 ├── pages/       Page Objects (one class per page, extends BasePage)
 ├── fixtures/    test.js — extended `test` with Page Object fixtures + failure evidence
-├── data/        test-data.js — env credentials, synthetic data helpers
-├── support/     tags.js — tag constants (@smoke, @auth, …)
+├── data/        test-data.js — env credentials, synthetic data helpers; auth-data.js — observed auth values
+├── support/     tags.js — tag constants (@smoke, @auth, …); app-ready.js — load + hydration wait
 ├── specs/       E2E specs, one file per feature (project "chromium")
 ├── faults/      deliberate fault-injection proofs (project "faults", opt-in only)
 └── unit/        node:test suites for utils/, hooks and the healing workflow
@@ -25,8 +25,22 @@ spec (tests/specs/login.spec.js)
 - **Page Objects** define every locator once, in the constructor: `this.submitButton = page.getByRole('button', { name: 'Log in' })`. This is the only shape the self-healer may edit, so keep it.
 - **Specs** never build locators inside `expect()` (ESLint enforces this) and never construct Page Objects by hand.
 - **Fixture `healingEvidence`** runs automatically. When a test fails, it attaches an ARIA snapshot and the page URL. The failure classifier uses them to decide whether a locator can be repaired.
-- **Credentials:** use `getCredentials()` and skip with a reason when it is missing. Never hard-code credentials.
+- **Credentials:** use `getCredentials()` / `getTestUserEmail()` and skip with a reason when they are missing. Never hard-code credentials.
+- **Account creation:** tests that create real accounts check `isAccountCreationAllowed()` (`ALLOW_ACCOUNT_CREATION=true`) and skip otherwise.
+- **Synchronization:** `BasePage.goto()` waits for `load` and for the app to finish hydrating (`support/app-ready.js`: React/Next.js, Vue/Nuxt, Angular), so clicks reach real event handlers. After a reload or hard redirect call `waitForReady()`. Waits are always explicit conditions; never `waitForTimeout`.
+- **Native form validation:** browser pop-up texts differ by browser and locale, so assert the field is invalid (`BasePage.validityOf(field)`) and the URL is unchanged, not the pop-up text.
 - **Expected values:** copy them word for word from `docs/test-cases.md`, where they were recorded from observed behaviour.
+
+## Current suite
+
+| Spec | Cases | Fixtures used | Needs |
+|---|---|---|---|
+| `specs/login.spec.js` | TC-AUTH-LOGIN-001 … 011 | `header`, `loginPage`, `signupPage`, `productsPage` | `TEST_USER_*` for 002, 004, 011 |
+| `specs/signup.spec.js` | TC-AUTH-SIGNUP-001 … 011 | `header`, `homePage`, `signupPage`, `loginPage` | `ALLOW_ACCOUNT_CREATION=true` for 003; `TEST_USER_EMAIL` for 004 |
+
+Page Objects: `base-page.js`, `header-component.js` (banner links + "Log out"), `home-page.js`, `login-page.js`, `signup-page.js`, `products-page.js`.
+
+Every run through `scripts/run-tests.mjs` also writes Allure results and the Allure report to `artifacts/runs/<runId>/`.
 
 ## Projects
 | Project | Directory | Runs with |

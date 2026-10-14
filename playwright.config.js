@@ -21,6 +21,13 @@ export default defineConfig({
     ['list'],
     ['html', { outputFolder: config.paths.htmlReport, open: 'never' }],
     ['json', { outputFile: config.paths.reportJson }],
+    // Raw Allure results per run; run-tests.mjs / scripts/allure-report.mjs build them into ./allure-report.
+    ['allure-playwright', {
+      resultsDir: config.paths.allureResults,
+      detail: true,
+      suiteTitle: true,
+      environmentInfo: { baseURL: config.baseURL, runId: config.runId, node: process.version },
+    }],
   ],
   use: {
     baseURL: config.baseURL,

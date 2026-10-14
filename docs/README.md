@@ -11,6 +11,11 @@ The planner agent writes these files from what it **observed** in the browser. T
 | `locator-map.md` | planner (locators), executer (Page Object column) | executer, self-healer | element → role/name → preferred locator → Page Object property |
 | `architecture.md` | maintained by hand | humans | how the harness works (flows, classification, hooks, retention) |
 
+## Current coverage
+Explored on 2026-10-14 for `https://qa-demo-website.vercel.app` ("Demo Shop"): **Login (`/login`)** and **Signup (`/signup`)**, plus how to reach them from the header and home page. Test cases TC-AUTH-LOGIN-001…011 and TC-AUTH-SIGNUP-001…011. Catalog, product detail, cart, orders, profile and checkout are **not explored**.
+
+Open question recorded in `app-context.md`: after signup the app says "check your email to confirm", but the user is already logged in and an unconfirmed account can log in. It is unclear whether this is intended.
+
 ## Lifecycle
 1. **New site:** every file except `architecture.md` starts with `Status: NOT EXPLORED`. The orchestrator treats such files as undocumented.
 2. **Discovery** (`/qa-automation explore <url>`): the banner becomes `Status: explored <date> — scope: …` and the tables are filled in.

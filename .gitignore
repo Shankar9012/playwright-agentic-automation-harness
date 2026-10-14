@@ -29,3 +29,7 @@ artifacts/runs/*
 *.tmp
 .DS_Store
 Thumbs.db
+
+# Allure output outside a run directory (per-run output lives in artifacts/runs/<runId>/)
+allure-results/
+allure-report/

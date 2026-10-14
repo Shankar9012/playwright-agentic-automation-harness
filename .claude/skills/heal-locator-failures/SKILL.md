@@ -14,7 +14,7 @@ description: Repair an eligible broken or ambiguous locator in test/Page Object 
 | `STRICT_MODE` | locator matched several elements |
 | `WRONG_ELEMENT` | locator resolved to the wrong element type for the action |
 
-Never healed (not queued): `ASSERTION_MISMATCH` (wrong value/URL/title), `ELEMENT_ABSENT` (possible product defect), `API`, `NAVIGATION`, `ENVIRONMENT`, `TIMEOUT_INSUFFICIENT_EVIDENCE`, `UNKNOWN`. Even for queued items **you** must confirm the intended element's identity; if you cannot, abandon.
+Never healed (not queued): `ASSERTION_MISMATCH` (wrong value/URL/title), `ELEMENT_ABSENT` (possible product defect), `API`, `NAVIGATION`, `ENVIRONMENT`, `TIMEOUT_INSUFFICIENT_EVIDENCE`, `UNKNOWN`. Even for queued items **you** must confirm the intended element's identity; if you cannot, abandon. Also abandon **SYNC** cases (the locator resolved to the right element but the action had no effect because the app was not interactive yet); those are fixed by the executer with a readiness wait, never by changing a locator.
 
 ## Evidence to read
 From the queue item: `errorMessage`, `locator`, `target` (file/line/statement), `candidates`, `evidence.pageSnapshot` (ARIA YAML), `evidence.errorContext`, `evidence.screenshot`, `evidence.trace` (open with `npx playwright show-trace <path>` if needed). Plus the spec, the Page Object and `docs/locator-map.md`.
